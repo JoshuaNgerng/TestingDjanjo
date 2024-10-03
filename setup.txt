@@ -33,7 +33,7 @@ GRANT ALL PRIVILEGES ON DATABASE django_db TO django_user;
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'jngerng',              # Your PostgreSQL database name
+        'NAME': 'django_db',              # Your PostgreSQL database name
         'USER': 'django_user',          # Your PostgreSQL user
         'PASSWORD': 'your_password',    # Your PostgreSQL user's password
         'HOST': 'localhost',            # Set to your database server IP or leave it as localhost

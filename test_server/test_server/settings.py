@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,7 +55,7 @@ ROOT_URLCONF = 'test_server.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'myapp/templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,11 +77,11 @@ WSGI_APPLICATION = 'test_server.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_db',            # Your PostgreSQL database name
-        'USER': 'django_user',          # Your PostgreSQL user
-        'PASSWORD': '12345',            # Your PostgreSQL user's password
-        'HOST': 'localhost',            # Set to your database server IP or leave it as localhost
-        'PORT': '5432',                 # Default PostgreSQL port
+        'NAME': os.environ.get('DB_NAME'),                 # Your PostgreSQL database name
+        'USER': os.environ.get('DB_USER'),                 # Your PostgreSQL user
+        'PASSWORD': os.environ.get('DB_PASSWORD'),         # Your PostgreSQL user's password
+        'HOST': os.environ.get('DB_HOST'),                 # Set to your database server IP or leave it as localhost
+        'PORT': os.environ.get('DB_PORT'),                 # Default PostgreSQL port
     }
 }
 
@@ -118,7 +119,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'myapp/static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
